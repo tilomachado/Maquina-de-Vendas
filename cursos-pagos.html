@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos Pagos - Assistência em Trabalhos de Pesquisa</title>
+    <meta name="description" content="Explore nossos cursos pagos para aprimorar suas habilidades acadêmicas e profissionais.">
+    <meta name="keywords" content="cursos pagos, assistência acadêmica, desenvolvimento pessoal, Moçambique">
+    <link rel="icon" href="icone.png" type="image/png">
+
+    <!-- Código do Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDDY8TGYQV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-GDDY8TGYQV');
+    </script>
+
+    <!-- Firebase App -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAyXntXghf4pFK77myaIx8CJvfW6mHGWKI",
+            authDomain: "plataforma-do-mini-curso.firebaseapp.com",
+            projectId: "plataforma-do-mini-curso",
+            storageBucket: "plataforma-do-mini-curso.appspot.com",
+            messagingSenderId: "424655587612",
+            appId: "1:424655587612:web:851858a379c334227056e4",
+            measurementId: "G-6CE0E9R3J5"
+        };
+
+        // Inicializando o Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // Verificando se o usuário está autenticado
+        auth.onAuthStateChanged(async user => {
+            if (user) {
+                // Se o usuário estiver autenticado, verifica se o ID é o do admin
+                if (user.uid === "Q0Nq7DXCxVak1H19rCmR3YtFqOQ2") {
+                    document.getElementById('adminButton').style.display = 'flex'; // Mostra o botão
+                }
+            } else {
+                // Usuário não autenticado
+                console.log("Usuário não autenticado");
+            }
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1f1f1f, #2e2e2e);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background: linear-gradient(45deg, #ff00cc, #3333ff);
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-size: 3.2em;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: neon-glow 1.5s infinite alternate;
+        }
+
+        @keyframes neon-glow {
+            from {
+                text-shadow: 0 0 10px #ff007f, 0 0 20px #7700ff, 0 0 30px #ff007f;
+            }
+            to {
+                text-shadow: 0 0 20px #ff007f, 0 0 40px #7700ff, 0 0 60px #ff007f;
+            }
+        }
+
+        /* Botões */
+        .btn {
+            background: linear-gradient(90deg, #ff6a00, #ff006e);
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 135, 0.3);
+            display: inline-block;
+            margin: 15px 0;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(90deg, #ff006e, #ff6a00);
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 105, 135, 0.7);
+        }
+
+        /* Seções */
+        .section {
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.3));
+            border-radius: 10px;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .section:hover {
+            transform: scale(1.03);
+            opacity: 0.9;
+        }
+
+        .section h2 {
+            font-size: 2.5em;
+            color: #ffcc00;
+        }
+
+        .section p {
+            font-size: 1.4rem;
+            line-height: 1.6;
+        }
+
+        /* Botão flutuante */
+        .floating-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #ff006e;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            display: none; /* Inicialmente oculto */
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .floating-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: #999;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            width: 100%;
+            box-shadow: 0 -5px 20px rgba(0, 255, 255, 0.3);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .footer-signature {
+            color: #ffcc00;
+            font-size: 1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .footer-signature:hover {
+            color: #ffcc00;
+            text-shadow: 0 0 10px #ffcc00;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            .btn {
+                font-size: 1.2rem;
+                padding: 15px 25px;
+                max-width: 250px;
+            }
+
+            footer p {
+                font-size: 1em;
+            }
+
+            .section h2 {
+                font-size: 2em;
+            }
+
+            .section p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <div class="section">
+            <h2>🎓 Conheça Nossos Cursos</h2>
+            <p>Oferecemos uma variedade de cursos pagos que visam aprimorar suas habilidades e conhecimentos em diversas áreas:</p>
+            <ul>
+                <li>Curso de Redação Acadêmica</li>
+                <li>Curso de Pesquisa e Metodologia</li>
+                <li>Curso de Desenvolvimento Pessoal</li>
+                <li>Curso de Gestão de Projetos</li>
+            </ul>
+            <p>Escolha o curso que mais se adapta às suas necessidades e faça sua inscrição!</p>
+            <a href="#" class="btn">Inscreva-se Agora</a>
+        </div>
+
+        <div class="section">
+            <h2>💻 Benefícios dos Nossos Cursos</h2>
+            <p>Ao se inscrever em nossos cursos, você terá acesso a:</p>
+            <ul>
+                <li>Materiais de alta qualidade</li>
+                <li>Aulas ao vivo e gravadas</li>
+                <li>Suporte personalizado</li>
+                <li>Certificação ao final do curso</li>
+            </ul>
+            <a href="#" class="btn">Saiba Mais</a>
+        </div>
+    </main>
+
+    <button id="adminButton" class="floating-button" onclick="window.location.href='admtilo.html'">⚙️</button>
+
+    <footer>
+        <p>© 2024 Assistência em Trabalhos de Pesquisa. Todos os direitos reservados.</p>
+        <p class="footer-signature" onclick="window.location.href='https://wa.link/eq5rhp'">Desenvolvido por Tilo Machado</p>
+    </footer>
+</body>
+</html>
