@@ -1,0 +1,163 @@
+/* Estilo básico do layout */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1f1f1f, #2e2e2e);
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+header {
+    text-align: center;
+    padding: 30px 10px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    color: #ffcc00;
+    font-size: 3em;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+    margin: 0;
+}
+
+/* Carrossel Container */
+.carousel-container {
+    overflow: hidden;
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto;
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #2e2e2e, #3f3f3f);
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+    padding: 10px 0;
+}
+
+/* Cada Curso */
+.course {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    min-width: 300px;
+    margin: 0 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.course:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.kelcia-img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    margin-bottom: 15px;
+}
+
+.course h2 {
+    color: #ffcc00;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.course p {
+    text-align: center;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #d3d3d3;
+}
+
+/* Botões do Carrossel */
+.carousel-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 800px;
+    margin: 10px auto;
+}
+
+.nav-button {
+    background-color: #ffcc00;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 1.5em;
+    border-radius: 10px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.nav-button:hover {
+    background-color: #ff9900;
+    transform: scale(1.1);
+}
+
+/* Botão Principal */
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.btn-principal {
+    background: linear-gradient(90deg, #00ff00, #32cd32);
+    color: #333;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.btn-principal:hover {
+    background: linear-gradient(90deg, #32cd32, #00ff00);
+    transform: scale(1.1);
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .course {
+        min-width: 90%;
+        margin: 0 5px;
+    }
+
+    header h1 {
+        font-size: 2.2em;
+    }
+}
