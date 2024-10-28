@@ -17,187 +17,189 @@
 
     <style>
         /* Estilos Básicos */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #1f1f1f, #2e2e2e);
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            overflow: hidden;
-        }
+        /* Estilos Básicos */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #1f1f1f, #2e2e2e);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: auto; /* Permite rolagem caso necessário */
+}
 
-        .container {
-            background: linear-gradient(135deg, #3a3a3a, #444, #1f1f1f);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            max-width: 90%;
-            width: 400px;
-            text-align: center;
-        }
+.container {
+    background: linear-gradient(135deg, #3a3a3a, #444, #1f1f1f);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    max-width: 90%;
+    width: 400px;
+    text-align: center;
+    max-height: 90vh; /* Garante que o conteúdo não ultrapasse a tela */
+    overflow-y: auto; /* Adiciona rolagem no container se necessário */
+}
 
-        h2 {
-            color: #ffcc00;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px #ffcc00;
-            font-size: 2em;
-        }
+h2 {
+    color: #ffcc00;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #ffcc00;
+    font-size: 2em;
+}
 
-        label {
-            display: block;
-            margin: 10px 0 5px;
-            color: #aaa;
-        }
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #aaa;
+}
 
-        .input-field {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 2px solid transparent;
-            border-radius: 5px;
-            background-color: #444;
-            color: white;
-            font-size: 1em;
-            transition: background-color 0.3s, border 0.3s;
-        }
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    background-color: #444;
+    color: white;
+    font-size: 1em;
+    transition: background-color 0.3s, border 0.3s;
+}
 
-        .input-field:focus {
-            background-color: #555;
-            border: 2px solid #ff007f;
-        }
+.input-field:focus {
+    background-color: #555;
+    border: 2px solid #ff007f;
+}
 
-        .btn {
-            background: linear-gradient(90deg, #28a745, #218838);
-            color: #ffffff;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-size: 1.2em;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-            margin-top: 20px;
-            width: 100%;
-        }
+.btn {
+    background: linear-gradient(90deg, #28a745, #218838);
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 1.2em;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    margin-top: 20px;
+    width: 100%;
+}
 
-        .btn:hover {
-            background: linear-gradient(90deg, #218838, #28a745);
-            transform: scale(1.05);
-        }
+.btn:hover {
+    background: linear-gradient(90deg, #218838, #28a745);
+    transform: scale(1.05);
+}
 
-        .loading {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            color: #ffcc00;
-            backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+.loading {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    color: #ffcc00;
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #ffcc00;
-            border-radius: 50%;
-            border-top: 4px solid transparent;
-            animation: spin 1s linear infinite;
-            box-shadow: 0 0 10px rgba(255, 204, 0, 0.8), 0 0 20px rgba(255, 204, 0, 0.6);
-        }
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #ffcc00;
+    border-radius: 50%;
+    border-top: 4px solid transparent;
+    animation: spin 1s linear infinite;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.8), 0 0 20px rgba(255, 204, 0, 0.6);
+}
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
-        /* Estilos do Modal */
-        .modal, .error-modal, .success-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+/* Estilos do Modal */
+.modal, .error-modal, .success-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
-        .modal-content, .error-modal-content, .success-modal-content {
-            background-color: #000; /* Cor do fundo do modal agora é preto */
-            color: #ffcc00; /* Cor da fonte no modal */
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 500px;
-            position: relative;
-            box-shadow: 0 0 15px rgba(255, 204, 0, 0.5); /* Sombra para um efeito mais moderno */
-        }
+.modal-content, .error-modal-content, .success-modal-content {
+    background-color: #000;
+    color: #ffcc00;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+}
 
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            color: #ff0000;
-        }
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #ff0000;
+}
 
-        .accept-terms {
-            margin-top: 10px;
-            color: #ffcc00;
-        }
+.accept-terms {
+    margin-top: 10px;
+    color: #ffcc00;
+}
 
-        .error-icon, .success-icon {
-            font-size: 1.5em;
-        }
+.error-icon, .success-icon {
+    font-size: 1.5em;
+}
 
-        .error-modal-content {
-            animation: shake 0.5s infinite;
-        }
+.error-modal-content {
+    animation: shake 0.5s infinite;
+}
 
-        /* Estilo para os Botões Rosa */
-        .pink-btn {
-            background-color: #ff007f; /* Cor rosa */
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-        }
+.pink-btn {
+    background-color: #ff007f;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
 
-        .pink-btn:hover {
-            background-color: #ff0057; /* Tom rosa mais escuro ao passar o mouse */
-        }
+.pink-btn:hover {
+    background-color: #ff0057;
+}
 
-        /* Melhorando a Responsividade */
-        @media (max-width: 768px) {
-            .container {
-                width: 90%;
-                padding: 20px;
-            }
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
 
-            h2 {
-                font-size: 1.8em;
-            }
+    h2 {
+        font-size: 1.8em;
+    }
 
-            .btn {
-                font-size: 1em;
-                padding: 10px;
-            }
-        }
+    .btn {
+        font-size: 1em;
+        padding: 10px;
+    }
+}
+
     </style>
 </head>
 <body>
