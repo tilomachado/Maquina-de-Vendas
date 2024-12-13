@@ -185,6 +185,13 @@
 
     <div id="instruction">Coloque seu dispositivo em modo horizontal para melhor visualização!</div>
 
+    <script>
+        // Espera 3 segundos para ocultar o elemento
+        setTimeout(function() {
+            document.getElementById('instruction').style.display = 'none';
+        }, 3000); // 3000 milissegundos = 3 segundos
+    </script>
+
     <!-- Vídeos do Curso -->
     <div class="video-container" id="video1-container">
         <iframe id="video1" src="https://www.youtube.com/embed/pgaFgRuYOYA?enablejsapi=1&controls=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
